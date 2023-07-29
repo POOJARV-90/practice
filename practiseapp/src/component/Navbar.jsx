@@ -6,14 +6,19 @@ import { Authcontext } from './Context/Authcontext';
 const Navbar = () => {
 
 const [userdata , setUserdata] = useState();
-const {login,state,logout} = useContext(Authcontext);
-const router = useNavigate()
+const {state,login,logout} = useContext(Authcontext);
+const router = useNavigate();
 
 useEffect(() => {
+  
   if (state) {
       setUserdata(state.user)
+     
+  }else{
+    setUserdata({})
   }
 }, [state])
+
 
   return (
     <div id='parent'>
@@ -23,7 +28,7 @@ useEffect(() => {
       {/* userdata */}
         {userdata?.email?
         <>
-        <span><i class="fa-regular fa-user fa-lg"> :  </i>{state?.userdata?.name} </span>  
+        <span><i class="fa-regular fa-user fa-lg"> :  </i>{state?.user?.name} </span>  
         <span>PRODUCTS</span>
         {userdata?.role =="Seller" && <span>ADD PRODUCT</span> }
        

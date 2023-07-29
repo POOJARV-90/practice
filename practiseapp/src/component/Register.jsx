@@ -18,25 +18,27 @@ const handleSubmit = (event) => {
     if(userdata.name && userdata.email && userdata.password){
         const array = JSON.parse(localStorage.getItem("Users")) || [];
         array.push(userdata);
-        const userobject ={
-            name : userdata.name,
-            email :userdata.email,
-            password: userdata.password,
-            role:userdata.role
-        }
+        // const userobject ={
+        //     name : userdata.name,
+        //     email :userdata.email,
+        //     password: userdata.password,
+        //     role:userdata.role
+        // }
         
        
         localStorage.setItem("Users",JSON.stringify(array));
-        setUserdata({})
+
+        setUserdata({name:"", email:"",password :"" , role :"Buyer"})
+         router('/Login')
         alert("Registerd succesfully")
-        router('/Login')
+       
     }else{
         alert("please submit the require details")
     }
 }
 
 function selectrole(event){
-    console.log(event.target.value ,"role")
+    // console.log(event.target.value ,"role")
     setUserdata({...userdata,["role"]:event.target.value})
 
 }
@@ -46,23 +48,23 @@ function selectrole(event){
     <div id='body'>
         <form onSubmit={handleSubmit}>
             <h4>REGISTER</h4>
-            <label htmlFor="">Name</label> <br />
-            <input type="text" onChange={handlechange} name='name' /> <br />
+            <label >Name</label> <br />
+            <input  value={userdata.name} type="text" onChange={handlechange} name='name' /> <br />
 
             
             <br />
 
             <label htmlFor="">Email</label> <br />
-           <input type="email" onChange={handlechange} name='email'  />  <br />
+           <input value={userdata.email} type="email" onChange={handlechange} name='email'  />  <br />
 
            <label htmlFor="">Select Role : </label>
             <select id='select' onChange={selectrole} >
-                <option value="Buyer">Buyer</option>
+                <option  value="Buyer">Buyer</option>
                 <option value="Seller">Seller</option>
             </select> <br />
 
            <label htmlFor="">Password</label> <br />
-           <input type='password' onChange={handlechange } name='password'/>  <br />
+           <input value={userdata.password} type='password' onChange={handlechange} name='password'/>  <br />
 
            <input type="submit" id='button' value="Register" />
 

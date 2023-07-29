@@ -24,22 +24,22 @@ const Login = () => {
           users[i].password == userdata.password
         ) {
           flag = true;
-          // login(users[i]);
-          // alert("login succesfull")
-          // localStorage.setItem(("CurrentUser"),JSON.stringify(userdata));
-          // setUserdata({email:"",password:""})
-
+          login(users[i]);
+          alert("login succesfull")
+          setUserdata({email:"",password:""})
+          localStorage.setItem(("CurrentUser"),JSON.stringify(userdata));
+          router("/");
           break;
         }
       }
       if (flag == false) {
         return alert("Please check credentials.");
       }
-      alert("login succesfull");
-      login(users[i])
-      localStorage.setItem("CurrentUser", JSON.stringify(userdata));
-      setUserdata({ email: "", password: "" });
-      router("/");
+      // alert("login succesfull");
+      // login(users[i])
+      // localStorage.setItem("CurrentUser", JSON.stringify(userdata));
+      // setUserdata({ email: "", password: "" });
+      // router("/");
     } else {
       alert("Please submit all details");
     }
