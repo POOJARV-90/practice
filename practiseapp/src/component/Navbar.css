@@ -29,6 +29,7 @@ font-weight: bold;
 }
 #parent>div:nth-child(3)>span{
     font-weight: 600;
+    cursor: pointer;
 }
 #login{
     margin-left: 40%;
