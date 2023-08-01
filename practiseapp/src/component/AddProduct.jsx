@@ -32,7 +32,7 @@ const AddProduct = () => {
 
     function selectRole(event) {
         // console.log(event.target.value, "- role")
-        setProductData({ ...productData, ["category"]: event.target.value })
+        setProductData({ ...productData,["category"]: event.target.value })
     }
 
     useEffect(() => {

@@ -5,16 +5,13 @@ import { Authcontext } from "./Context/Authcontext";
 
 const Navbar = () => {
   const [userdata, setUserdata] = useState();
-  // const [isuser,setIsuser]=useState(false)
 
   const { state, logout } = useContext(Authcontext);
   const router = useNavigate();
-  // console.log(userdata,"userdata");
 
   useEffect(() => {
-    // const user = JSON.parse(localStorage.getItem("Users"))  //new
-    if (state?.user?.email) {
-      setUserdata(state.user);
+    if (state?.user) {
+      setUserdata(state?.user);
     } else {
       setUserdata({});
     }
@@ -25,13 +22,13 @@ const Navbar = () => {
       <div onClick={() => router("/")}>LOGO</div>
       <div></div>
       <div id="">
-        {/* userdata */}
         {userdata?.email ? (
           <>
             <span>
-              <i class="fa-regular fa-user fa-lg"> : </i>
-              {userdata.name}{" "}
+              <i className="fa-regular fa-user fa-lg"> : </i>
+              {userdata.name}:<span>{userdata.role}</span>
             </span>
+            <span onClick={() => router("/Cart")} >CART</span>
             <span onClick={() => router("/AllProducts")}>PRODUCTS</span>
             {userdata.role == "Seller" && (
               <span onClick={() => router("/Addproduct")}>ADD PRODUCT</span>
@@ -39,7 +36,7 @@ const Navbar = () => {
 
             <span onClick={logout}>
               {" "}
-              LOGOUT <i class="fa-solid fa-right-from-bracket"></i>
+              LOGOUT <i className="fa-solid fa-right-from-bracket"></i>
             </span>
           </>
         ) : (
@@ -58,3 +55,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

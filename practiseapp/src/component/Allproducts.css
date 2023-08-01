@@ -5,6 +5,7 @@
 #products{
     /* border: 1px solid rgb(0, 255, 98); */
     display: flex; 
+    flex-wrap: wrap;
     justify-content: space-around;
 }
 #single-pro{
@@ -15,6 +16,7 @@
     width: 18%;
     border: 1px dashed rgb(115, 115, 179);
     text-align: left;
+    margin-bottom: 3%;
     /* height: 400px; */
 }
 #single-pro>p{

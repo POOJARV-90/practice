@@ -59,14 +59,14 @@ const Singlepoduct = () => {
     if (isUserLoggedIn) {
       const users = JSON.parse(localStorage.getItem("Users"));
       for (let i = 0; i < users.length; i++) {
-        if (users[i].email === currentUserEmail) {
-          users[i].cart.push(single);
+        if (users[i].email == currentUserEmail) {
+          users[i]?.cart?.push(single);
           localStorage.setItem("Users", JSON.stringify(users));
           break;
         }
       }
       alert("Product successfully added to cart!");
-      router("/cart");
+      router("/AllProducts");
     } else {
       alert("You can't add a product before logging in!");
     }
@@ -111,18 +111,12 @@ const Singlepoduct = () => {
   return (
     <div>
       {allowUpdate ? (
-        <div>
+        <div id="body">
           <div style={{ display: "flex", justifyContent: "center" }}>
             <form onSubmit={handleSubmit}>
-              <fieldset
-                style={{
-                  width: "380px",
-                  marginTop: "50px",
-                  textAlign: "centre",
-                  backgroundImage:
-                    "linear-gradient(to bottom right, #8000ff, #ff00ff)",
-                }}
-              >
+              
+                
+              
                 {/* <legend>Fill your Details</legend> */}
                 <label>Product Name:</label>
                 <br />
@@ -158,15 +152,9 @@ const Singlepoduct = () => {
                 />
                 <br />
                 <label>Product Category :</label>
-                <br />
+                  
                 <select
-                  style={{
-                    width: "380px",
-                    marginTop: "10px",
-                    height: "30px",
-                    marginBottom: "10px",
-                    textAlign: "centre",
-                  }}
+                  id="select"
                   onChange={selectRole}
                 >
                   <option value="Other">Other</option>
@@ -193,21 +181,12 @@ const Singlepoduct = () => {
                 />
                 <br />
                 <input
-                  style={{
-                    marginLeft: "105px",
-                    marginTop: "15px",
-                    backgroundColor: " black",
-                    fontWeight: "700",
-                    border: "2px solid  #ccff66",
-                    color: "white",
-                    padding: "8px 35px",
-                    borderRadius: "20px",
-                  }}
+                  id="button"
                   type="submit"
                   value="Update Product"
                 />
                 <p style={{textAlign:"center", color:"white", fontWeight:"700"}} onClick={closeUpate}>X</p>
-              </fieldset>
+                  
             </form>
           </div>
         </div>
@@ -217,10 +196,10 @@ const Singlepoduct = () => {
         style={{
           display: "flex",
           justifyContent: "space-evenly",
-          width: "50%",
+          width: "90%",
           margin: "auto",
-          marginTop: "50px",
-          border: "1px solid black",
+          marginTop: "50px"
+          // border: "5px solid black",
         }}
       >
         <div style={{ width: "40%", height: "350px" }}>
@@ -231,8 +210,8 @@ const Singlepoduct = () => {
           />
         </div>
 
-        <div style={{ width: "40%", height: "400px", padding: "15px" }}>
-          <h2>Name: {single.name}</h2>
+        <div style={{ width: "40%", height: "400px", padding: "15px", textAlign :"left" }}>
+          <h2 >Name: {single.name}</h2>
           <h2>Price: {single.price}$</h2>
           <p style={{ fontSize: "17px" }}>Category: {single.category}</p>
 
@@ -242,12 +221,13 @@ const Singlepoduct = () => {
                 style={{
                   height: "45px",
                   width: "150px",
-                  border: "1px solid purple",
-                  backgroundColor: "purple",
+                  border: "1px solid rgb(166, 166, 223)",
+                  backgroundColor: "#d6d6e2",
                   color: "white",
                   fontWeight: "700",
                   fontSize: "17px",
                   borderRadius: "50px",
+                  marginTop:"30px "
                 }}
                 onClick={uptoDate}
               >
@@ -260,12 +240,13 @@ const Singlepoduct = () => {
                 style={{
                   height: "45px",
                   width: "150px",
-                  border: "1px solid purple",
-                  backgroundColor: "purple",
+                  border: "1px solid rgb(166, 166, 223)",
+                  backgroundColor: "#d6d6e2",
                   color: "white",
                   fontWeight: "700",
                   fontSize: "17px",
                   borderRadius: "50px",
+                  marginTop:"30px "
                 }}
                 onClick={addCart}
               >
