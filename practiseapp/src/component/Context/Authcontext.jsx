@@ -8,7 +8,7 @@ const incialState  = {user:null , product:[]};
 const reducer = (state,action) => {
     switch(action.type){
         case "login":
-            return{user:action.payload};
+            return{user:action.payload};  //...state
 
          case "logout"  :
             return{user:null} ;
@@ -16,13 +16,13 @@ const reducer = (state,action) => {
             default :
             return state;
     }
-}
+};
 
-export const Authprovider = ({children}) => {
+const Authprovider = ({children}) => {
 
     const [state,dispatch] = useReducer(reducer,incialState);
 
-    function login(userData){
+    const login = (userData) => {
         
         localStorage.setItem("CurrentUser",JSON.stringify(userData)); //new
         dispatch({
@@ -31,11 +31,12 @@ export const Authprovider = ({children}) => {
         })
     }
 
-    function logout (){
+    const logout = () => {
         localStorage.removeItem("CurrentUser")
         dispatch({
             type :"logout"
         })
+        alert("you have logout succesfully")
     }
 
     useEffect(()=> {
@@ -55,7 +56,9 @@ export const Authprovider = ({children}) => {
         <Authcontext.Provider value={{state,login,logout}}>
             {children}
         </Authcontext.Provider>
-    )
+    );
 
 
-}
+};
+
+export default Authprovider ;

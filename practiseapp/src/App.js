@@ -7,6 +7,8 @@ import Navbar from './component/Navbar';
 import Home from './component/Home';
 import AddProduct from './component/AddProduct';
 import AllProducts from './component/AllProducts';
+import Singlepoduct from './component/Singlepoduct';
+import Cart from './component/Cart';
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
 <Route exact path='/Login' element={<Login/>}/>
 <Route exact path='/Addproduct' element={<AddProduct />} />
 <Route exact path='/AllProducts' element={<AllProducts />} />
+<Route exact path='/Singlepoduct/:id' element={<Singlepoduct/>} />
+<Route exact path='/Cart' element={<Cart/>} />
 
 
 </Routes>

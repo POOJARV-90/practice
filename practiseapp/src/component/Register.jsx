@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import '../component/Register.css'
 import { useNavigate } from 'react-router-dom';
 
-const Register = () => {
+const  Register = () => {
 
-const [userdata , setUserdata] = useState({name:"", email:"",password :"" , role :"Buyer"});
+const [userdata , setUserdata] = useState({
+    name:"", email:"",password :"" , role :"Buyer" , 
+});
 
 const router = useNavigate()
 
@@ -17,18 +19,18 @@ const handleSubmit = (event) => {
     event.preventDefault();
     if(userdata.name && userdata.email && userdata.password){
         const array = JSON.parse(localStorage.getItem("Users")) || [];
-        array.push(userdata);
-        // const userobject ={
-        //     name : userdata.name,
-        //     email :userdata.email,
-        //     password: userdata.password,
-        //     role:userdata.role
-        // }
         
-       
+        const userobject ={
+            name : userdata.name,
+            email :userdata.email,
+            password: userdata.password,
+            role:userdata.role,
+            cart :[]
+        }
+        array.push(userobject);
         localStorage.setItem("Users",JSON.stringify(array));
 
-        setUserdata({name:"", email:"",password :"" , role :"Buyer"})
+        setUserdata({name:"", email:"",password :"" , role :"Buyer" , })
          router('/Login')
         alert("Registerd succesfully")
        

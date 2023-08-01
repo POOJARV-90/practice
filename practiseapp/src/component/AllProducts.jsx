@@ -1,28 +1,38 @@
 import React, { useEffect, useState } from 'react'
 import '../component/Allproducts.css'
+import { useNavigate } from 'react-router-dom';
+
 
 const AllProducts = () => {
     const [isProductsExist, setIsProductsExist] = useState(false);
-    const [products, setProducts] = useState();
+    const [products, setProducts] = useState([]);
+    const router = useNavigate();
 
-    console.log(products, " - products")
+    // console.log(products, " - products")
 
     useEffect(() => {
         const productsFromDb = JSON.parse(localStorage.getItem("Products"))
-        if (productsFromDb) {
+        if (productsFromDb?.length) {
             setIsProductsExist(true);
             setProducts(productsFromDb)
         } else {
             setIsProductsExist(false)
+            setProducts([])
         }
     }, [])
+
+    const tosingleproduct = (id) =>{
+        console.log(id,"id")
+          router(`/Singlepoduct/${id}`)
+    }
+
     return (
         <div id='pro-body'>
             {!isProductsExist ? <div>No products</div>
                 :
-                <div id='products' >
+                <div id='products'  >
                     {products && products.map((pro) => (
-                        <div id='single-pro' key={pro.name}>
+                        <div onClick={() => tosingleproduct(pro.id)} id='single-pro' key={pro.name} >
                             <div>
                             <img src={pro.image} />
                             </div>
