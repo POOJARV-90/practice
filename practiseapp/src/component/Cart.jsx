@@ -23,37 +23,35 @@ const Cart = () => {
         }
       }
     } else {
-     alert("Please login to watch all cart products.");
+      alert("Please login to watch all cart products.");
       router("/login");
     }
   }, []);
 
   useEffect(() => {
     if (userCart.length) {
-        var totalprice = 0;
-        for (var i = 0; i < userCart.length; i++) {
-            totalprice += parseInt( userCart[i].price) 
-        }
-        setFinalPrice(totalprice)
+      var totalprice = 0;
+      for (var i = 0; i < userCart.length; i++) {
+        totalprice += parseInt(userCart[i].price);
+      }
+      setFinalPrice(totalprice);
     }
-}, [userCart])
+  }, [userCart]);
 
-
-useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("CurrentUser"))
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("CurrentUser"));
     if (user) {
-        if (user?.role == "Seller") {
-            alert("Access granted only to Buyer.")
-            router('/')
-        }
+      if (user?.role == "Seller") {
+        alert("Access granted only to Buyer.");
+        router("/");
+      }
     } else {
-        alert("You are not a Logged in user.")
-        router('/practicelogin')
+      alert("You are not a Logged in user.");
+      router("/practicelogin");
     }
-}, [])
+  }, []);
 
-
-  function checkout(){
+  function checkout() {
     const user = JSON.parse(localStorage.getItem("CurrentUser"));
     if (user?.email) {
       const allUsers = JSON.parse(localStorage.getItem("Users"));
@@ -62,15 +60,15 @@ useEffect(() => {
           allUsers[i].email == user.email &&
           allUsers[i].password == user.password
         ) {
-          allUsers[i].cart=[];
+          allUsers[i].cart = [];
           break;
         }
       }
-      localStorage.setItem("Users",JSON.stringify(allUsers))
+      localStorage.setItem("Users", JSON.stringify(allUsers));
     }
-    setFinalPrice([]);  
+    setFinalPrice([]);
     setUserCart([]);
-   alert("Your products will be delivered soon. Thankyou for shopping!")
+    alert("Your products will be delivered soon. Thankyou for shopping!");
   }
 
   return (
@@ -108,7 +106,6 @@ useEffect(() => {
             ))}
         </div>
 
-
         <div
           style={{ width: "25%", height: "300px", border: "1px solid black" }}
         >
@@ -122,16 +119,17 @@ useEffect(() => {
           <button
             style={{
               height: "45px",
-                  width: "150px",
-                  border: "1px solid rgb(166, 166, 223)",
-                  backgroundColor: "#d6d6e2",
-                  color: "white",
-                  fontWeight: "700",
-                  fontSize: "17px",
-                  borderRadius: "50px",
-                  marginTop:"30px " 
+              width: "150px",
+              border: "1px solid rgb(166, 166, 223)",
+              backgroundColor: "#d6d6e2",
+              color: "white",
+              fontWeight: "700",
+              fontSize: "17px",
+              borderRadius: "50px",
+              marginTop: "30px ",
             }}
-            onClick={checkout}>
+            onClick={checkout}
+          >
             Checkout
           </button>
         </div>
