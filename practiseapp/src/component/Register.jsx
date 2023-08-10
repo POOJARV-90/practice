@@ -20,7 +20,7 @@ const Register = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (userdata.name && userdata.email && userdata.password) {
-      const array = JSON.parse(localStorage.getItem("Users")) || [];
+      const array = JSON.parse(localStorage.getItem("Users")) || []; //asses
 
       const userobject = {
         name: userdata.name,
@@ -30,7 +30,7 @@ const Register = () => {
         cart: [],
       };
       array.push(userobject);
-      localStorage.setItem("Users", JSON.stringify(array));
+      localStorage.setItem("Users", JSON.stringify(array)); //set users here//
 
       setUserdata({ name: "", email: "", password: "", role: "Buyer" });
       router("/Login");

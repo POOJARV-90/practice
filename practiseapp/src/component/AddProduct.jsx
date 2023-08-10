@@ -16,6 +16,7 @@ const AddProduct = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (productData.name && productData.price && productData.image && productData.category) {
+            
             const productsArray = JSON.parse(localStorage.getItem("Products")) || [];
 
             const randomId = uuidv4();
