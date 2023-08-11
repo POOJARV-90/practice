@@ -6,14 +6,15 @@ import { Authcontext } from "./Context/Authcontext";
 const Singlepoduct = () => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [currentUserEmail, setCurrentUserEmail] = useState("");
-  const [products, setProducts] = useState([]);
+  
   const [single, setSingle] = useState({});
   const { id } = useParams();
   const router = useNavigate();
   const { state } = useContext(Authcontext);
-  const [isProductExist, setIsProductExist] = useState(false);
+  const [isProductExist, setIsProductExist] = useState(false); //2
+  const [products, setProducts] = useState([]);  //3
   const [userData, setUserData] = useState({});
-  const [productData, setProductData] = useState({
+  const [productData, setProductData] = useState({  //1
     name: "",
     price: "",
     image: "",
@@ -21,7 +22,7 @@ const Singlepoduct = () => {
   });
   const [allowUpdate, setAllowUpdate] = useState(false);
 
-  useEffect(() => {
+  useEffect(() => {   //1
     if (state) {
       setUserData(state.user);
     }
@@ -30,8 +31,8 @@ const Singlepoduct = () => {
   useEffect(() => {
     const productFromDB = JSON.parse(localStorage.getItem("Products"));
     if (productFromDB) {
-      setIsProductExist(true);
-      setProducts(productFromDB);
+      setIsProductExist(true); //2
+      setProducts(productFromDB);  //3
     } else {
       setIsProductExist(false);
     }
